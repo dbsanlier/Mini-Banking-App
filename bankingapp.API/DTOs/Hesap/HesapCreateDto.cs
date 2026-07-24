@@ -6,3 +6,6 @@ namespace bankingapp.API.DTOs.Hesap
         public decimal BaslangicBakiyesi { get; set; } = 0;
     }
 }
+
+//burada da ayni sekilde HesapCreateDto, 
+// Hesap entitysinin sadece olusturma islemi icin gerekli alanlarini iceriyo

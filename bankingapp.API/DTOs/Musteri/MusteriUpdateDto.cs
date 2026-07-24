@@ -8,3 +8,7 @@ namespace bankingapp.API.DTOs.Musteri
         public string Email { get; set; } = string.Empty;
     }
 }
+
+//Entityi dogrudan APIden gondermiyoruz, "Circular reference" hatasini engellemek icin DTO kullanioz
+// DTO, entityden farkli olarak sadece gerekli alanlari iceriyor yani
+// MusteriUpdateDto, Musteri entitysinin sadece guncelleme islemi icin gerekli alanlarini iceriyo

@@ -18,9 +18,10 @@ namespace bankingapp.API.Entities
         // Para yatirma/cekme icin: tek hesap yeterli
         // Transfer icin: hem gonderen hem alici dolu olur
         public int? GonderenHesapId { get; set; }
-        public Hesap? GonderenHesap { get; set; }
+        public Hesap? GonderenHesap { get; set; } //foreign key mesela
 
         public int? AliciHesapId { get; set; }
         public Hesap? AliciHesap { get; set; }
     }
 }
+

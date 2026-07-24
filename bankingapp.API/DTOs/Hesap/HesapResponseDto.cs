@@ -12,3 +12,6 @@ namespace bankingapp.API.DTOs.Hesap
         public string MusteriAdSoyad { get; set; } = string.Empty;
     }
 }
+
+//burada da ayni sekilde HesapResponseDto,
+// Hesap entitysinin sadece response islemi icin gerekli alanlarini iceriyo

@@ -17,7 +17,7 @@ namespace bankingapp.API.Entities
 
         // Foreign Key
         public int MusteriId { get; set; }
-        public Musteri? Musteri { get; set; }
+        public Musteri? Musteri { get; set; } 
 
         // Navigation property
         public ICollection<Islem> GonderilenIslemler { get; set; } = new List<Islem>();

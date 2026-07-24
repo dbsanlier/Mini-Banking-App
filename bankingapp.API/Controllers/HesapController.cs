@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using bankingapp.API.DTOs.Hesap;
 using bankingapp.API.Services;
+// dis dunya ile konusan kapi
+// Controller, HTTP isteklerini alan ve yanit veren bir siniftir
+// gelen istegi alir, service katmanina iletir, cevabi alir ve uygun http yanit koduyla geri gonderir
+// trafik polisi gibi dusunebiliriz
 
 namespace bankingapp.API.Controllers
 {

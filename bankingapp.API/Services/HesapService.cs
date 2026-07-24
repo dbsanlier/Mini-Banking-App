@@ -1,7 +1,10 @@
 using bankingapp.API.DTOs.Hesap;
 using bankingapp.API.Entities;
 using bankingapp.API.Repositories;
-
+// is kurallarinin yasadigi yer
+// repo 'getir, ekle, sil, guncelle' gibi islemleri gercekliyor, ama is kurallarini bilmez
+// service ise 'bu islem mantiken dogru mu, bu islem icin gerekli kosullar saglaniyor mu' gibi kontrolleri yapar
+// service katmani repository katmanina bagimli, ama repository katmani service katmanina bagimli degil
 namespace bankingapp.API.Services
 {
     public class HesapService : IHesapService

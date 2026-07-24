@@ -1,6 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using bankingapp.API.Entities;
 
+// DbContext, Entity Framework Core'un temel sinifi
+// veritabanı ile etkilesim kurmak için kullanilir
+// AppDbContext sinifi da uygulamanin veritabanı baglamini temsil eder ve 
+// DbSet<T> özellikleri ile veritabanındaki tablolarla etkilesim saglar
+
+//Repository katmani bu kopruyu kullanarak gercek SQL komutlarini arka planda  otomatik uretiyo
 namespace bankingapp.API.Data
 {
     public class AppDbContext : DbContext
