@@ -5,7 +5,7 @@
 }
 
 .layout__sidebar {
-  background: var(--color-navy-950);
+  background: var(--color-sidebar);
   color: var(--color-slate-100);
   padding: 28px 20px;
   display: flex;
@@ -24,7 +24,7 @@
   height: 36px;
   border-radius: var(--radius-sm);
   background: var(--color-accent);
-  color: white;
+  color: var(--color-accent-ink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,13 +65,14 @@
 }
 
 .layout__nav-link:hover {
-  background: var(--color-navy-800);
+  background: var(--color-sidebar-hover);
   color: var(--color-white);
 }
 
 .layout__nav-link--active {
-  background: var(--color-navy-700);
+  background: var(--color-sidebar-active);
   color: var(--color-white);
+  box-shadow: inset 3px 0 0 var(--color-accent);
 }
 
 .layout__main {

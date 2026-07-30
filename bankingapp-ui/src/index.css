@@ -5,15 +5,24 @@
   --color-navy-900: #101a2e;
   --color-navy-800: #16233d;
   --color-navy-700: #1f3157;
+  --color-sidebar: #122b57; 
+  --color-sidebar-hover: #1a3a70;
+  --color-sidebar-active: #234a8a;
   --color-slate-500: #64748b;
   --color-slate-300: #cbd5e1;
   --color-slate-100: #eef1f6;
   --color-bg: #f6f7fb;
   --color-white: #ffffff;
-  --color-accent: #1d6f5c;
-  --color-accent-dark: #15564a;
+
+  
+  --color-accent: #ffc800;
+  --color-accent-dark: #e0ac00;
+  --color-accent-ink: #0b1220; /* sari zemin uzerinde kullanilacak koyu metin */
+
+  /* Finansal anlam tasiyan renkler (artis/azalis) - marka renginden bagimsiz */
   --color-danger: #b3261e;
   --color-danger-bg: #fdecea;
+  --color-success-text: #1d6f5c;
   --color-success-bg: #e9f5f1;
 
   --font-display: 'Fraunces', Georgia, serif;
@@ -50,6 +59,6 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-dark);
   outline-offset: 2px;
 }

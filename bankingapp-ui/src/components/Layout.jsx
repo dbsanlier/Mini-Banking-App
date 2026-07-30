@@ -2,9 +2,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import './Layout.css';
 
 const navItems = [
-  { to: '/', label: 'Müşteriler', end: true },
+  { to: '/', label: 'Ana Sayfa', end: true },
+  { to: '/musteriler', label: 'Müşteriler' },
   { to: '/hesaplar', label: 'Hesaplar' },
-  { to: '/islemler', label: 'İşlemler' },
 ];
 
 function Layout() {
