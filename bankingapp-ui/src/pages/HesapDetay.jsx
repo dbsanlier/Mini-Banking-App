@@ -23,7 +23,8 @@ function HesapDetay() {
   const [aktifForm, setAktifForm] = useState(null); // 'yatir' | 'cek' | 'transfer' | null
   const [tutar, setTutar] = useState('');
   const [aciklama, setAciklama] = useState('');
-  const [aliciHesapId, setAliciHesapId] = useState('');
+  const [aliciIban, setAliciIban] = useState('');
+  const [aliciAdSoyad, setAliciAdSoyad] = useState('');
   const [islemHatasi, setIslemHatasi] = useState(null);
   const [islemSuruyor, setIslemSuruyor] = useState(false);
 
@@ -51,7 +52,8 @@ function HesapDetay() {
     setAktifForm(null);
     setTutar('');
     setAciklama('');
-    setAliciHesapId('');
+    setAliciIban('');
+    setAliciAdSoyad('');
     setIslemHatasi(null);
   };
 
@@ -68,7 +70,8 @@ function HesapDetay() {
       } else if (aktifForm === 'transfer') {
         await transferYap({
           gonderenHesapId: Number(id),
-          aliciHesapId: Number(aliciHesapId),
+          aliciIban: aliciIban.trim(),
+          aliciAdSoyad: aliciAdSoyad.trim(),
           tutar: Number(tutar),
           aciklama,
         });
@@ -154,16 +157,35 @@ function HesapDetay() {
           )}
 
           {aktifForm === 'transfer' && (
-            <div className="form-field">
-              <label htmlFor="aliciHesapId">Alıcı Hesap ID</label>
-              <input
-                id="aliciHesapId"
-                type="number"
-                value={aliciHesapId}
-                onChange={(e) => setAliciHesapId(e.target.value)}
-                required
-              />
-            </div>
+            <>
+              <div className="form-field">
+                <label htmlFor="aliciIban">Alıcı IBAN</label>
+                <input
+                  id="aliciIban"
+                  type="text"
+                  value={aliciIban}
+                  onChange={(e) => setAliciIban(e.target.value.toUpperCase())}
+                  placeholder="TR..."
+                  maxLength={26}
+                  required
+                />
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="aliciAdSoyad">Alıcı Ad Soyad</label>
+                <input
+                  id="aliciAdSoyad"
+                  type="text"
+                  value={aliciAdSoyad}
+                  onChange={(e) => setAliciAdSoyad(e.target.value)}
+                  placeholder="Hesap sahibinin adı soyadı"
+                  required
+                />
+                <span className="form-field__hint">
+                  Girilen ad soyad, IBAN sahibiyle eşleşmezse işlem gerçekleşmez.
+                </span>
+              </div>
+            </>
           )}
 
           <div className="form-field">

@@ -20,8 +20,16 @@ namespace bankingapp.API.Services
 
         public async Task<List<HesapResponseDto>> GetAllAsync()
         {
-            var hesaplar = await _hesapRepository.GetAllAsync();
-            return hesaplar.Select(MapToResponseDto).ToList();
+            try
+            {
+                var hesaplar = await _hesapRepository.GetAllAsync();
+                return hesaplar.Select(MapToResponseDto).ToList();
+            }
+            catch (Exception ex)
+            {
+                // Hata loglama islemi yapilabilir
+                throw new Exception("Hesaplar getirilirken bir hata olustu.", ex);
+            }
         }
 
         public async Task<HesapResponseDto?> GetByIdAsync(int id)

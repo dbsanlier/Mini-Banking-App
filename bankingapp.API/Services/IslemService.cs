@@ -7,10 +7,12 @@ namespace bankingapp.API.Services
     public class IslemService : IIslemService
     {
         private readonly IIslemRepository _islemRepository;
+        private readonly IHesapRepository _hesapRepository;
 
-        public IslemService(IIslemRepository islemRepository)
+        public IslemService(IIslemRepository islemRepository, IHesapRepository hesapRepository)
         {
             _islemRepository = islemRepository;
+            _hesapRepository = hesapRepository;
         }
 
         public async Task<List<IslemResponseDto>> GetByHesapIdAsync(int hesapId)
@@ -99,21 +101,29 @@ namespace bankingapp.API.Services
                 throw new InvalidOperationException("Transfer tutari sifirdan buyuk olmalidir.");
             }
 
-            if (dto.GonderenHesapId == dto.AliciHesapId)
-            {
-                throw new InvalidOperationException("Ayni hesaba transfer yapilamaz.");
-            }
-
             var gonderenHesap = await _islemRepository.GetHesapByIdAsync(dto.GonderenHesapId);
             if (gonderenHesap is null)
             {
                 throw new InvalidOperationException($"ID {dto.GonderenHesapId} ile gonderen hesap bulunamadi.");
             }
 
-            var aliciHesap = await _islemRepository.GetHesapByIdAsync(dto.AliciHesapId);
+            // Alici, hesap ID ile degil IBAN ile bulunuyor; gonderen kisinin yazdigi
+            // alici adi soyadi, IBAN'in gercek sahibiyle eslesmezse islem gerceklesmez.
+            var aliciHesap = await _hesapRepository.GetByIbanAsync(dto.AliciIban.Trim());
             if (aliciHesap is null)
             {
-                throw new InvalidOperationException($"ID {dto.AliciHesapId} ile alici hesap bulunamadi.");
+                throw new InvalidOperationException("Bu IBAN'a ait hesap bulunamadi.");
+            }
+
+            var aliciGercekAdSoyad = $"{aliciHesap.Musteri?.Ad} {aliciHesap.Musteri?.Soyad}".Trim();
+            if (!string.Equals(aliciGercekAdSoyad, dto.AliciAdSoyad.Trim(), StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException("Alici adi soyadi, IBAN sahibiyle eslesmiyor.");
+            }
+
+            if (gonderenHesap.Id == aliciHesap.Id)
+            {
+                throw new InvalidOperationException("Ayni hesaba transfer yapilamaz.");
             }
 
             if (gonderenHesap.Durum == HesapDurumu.Kapali || aliciHesap.Durum == HesapDurumu.Kapali)
@@ -133,7 +143,7 @@ namespace bankingapp.API.Services
                 Aciklama = dto.Aciklama,
                 IslemTarihi = DateTime.UtcNow,
                 GonderenHesapId = dto.GonderenHesapId,
-                AliciHesapId = dto.AliciHesapId
+                AliciHesapId = aliciHesap.Id
             };
 
             await _islemRepository.TransferYapAsync(gonderenHesap, aliciHesap, dto.Tutar, islem);

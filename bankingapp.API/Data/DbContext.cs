@@ -18,6 +18,7 @@ namespace bankingapp.API.Data
         public DbSet<Musteri> Musteriler { get; set; }
         public DbSet<Hesap> Hesaplar { get; set; }
         public DbSet<Islem> Islemler { get; set; }
+        public DbSet<RequestLog> RequestLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

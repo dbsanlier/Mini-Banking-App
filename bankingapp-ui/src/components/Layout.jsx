@@ -5,6 +5,7 @@ const navItems = [
   { to: '/', label: 'Ana Sayfa', end: true },
   { to: '/musteriler', label: 'Müşteriler' },
   { to: '/hesaplar', label: 'Hesaplar' },
+  { to: '/yatirim', label: 'Yatırım' },
 ];
 
 function Layout() {

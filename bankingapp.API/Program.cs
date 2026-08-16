@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using bankingapp.API.Data;
+using bankingapp.API.Middleware;
 using bankingapp.API.Repositories;
 using bankingapp.API.Services;
 // somut benzetme ornegi
@@ -32,6 +33,8 @@ builder.Services.AddScoped<IIslemRepository, IslemRepository>();
 builder.Services.AddScoped<IMusteriService, MusteriService>();
 builder.Services.AddScoped<IHesapService, HesapService>();
 builder.Services.AddScoped<IIslemService, IslemService>();
+builder.Services.AddScoped<IRequestLogService, RequestLogService>();
+builder.Services.AddHttpClient<IDovizService, DovizService>();
 
 var app = builder.Build();
 
@@ -42,6 +45,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
-app.MapControllers();  
+
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.MapControllers();
 
 app.Run();

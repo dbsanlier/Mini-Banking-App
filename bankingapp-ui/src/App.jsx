@@ -7,6 +7,7 @@ import MusteriDetay from './pages/MusteriDetay';
 import HesapListesi from './pages/HesapListesi';
 import HesapForm from './pages/HesapForm';
 import HesapDetay from './pages/HesapDetay';
+import YatirimSayfasi from './pages/YatirimSayfasi';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="hesaplar" element={<HesapListesi />} />
           <Route path="hesaplar/yeni" element={<HesapForm />} />
           <Route path="hesaplar/:id" element={<HesapDetay />} />
+          <Route path="yatirim" element={<YatirimSayfasi />} />
         </Route>
       </Routes>
     </BrowserRouter>

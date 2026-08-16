@@ -35,6 +35,13 @@ namespace bankingapp.API.Repositories
                 .FirstOrDefaultAsync(h => h.Id == id);
         }
 
+        public async Task<Hesap?> GetByIbanAsync(string iban)
+        {
+            return await _context.Hesaplar
+                .Include(h => h.Musteri)
+                .FirstOrDefaultAsync(h => h.Iban == iban);
+        }
+
         public async Task<List<Hesap>> GetByMusteriIdAsync(int musteriId)
         {
             return await _context.Hesaplar

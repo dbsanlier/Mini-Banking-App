@@ -440,3 +440,87 @@
   font-weight: 600;
   color: var(--color-navy-950);
 }
+
+/* ---- Doviz kartlari (Yatirim sayfasi) ---- */
+.doviz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.doviz-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 22px;
+  border-top: 3px solid var(--color-accent);
+}
+
+.doviz-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.doviz-card__sembol {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-navy-950);
+}
+
+.doviz-card__kod {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-slate-500);
+  letter-spacing: 0.04em;
+}
+
+.doviz-card__deger {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-navy-950);
+  margin-bottom: 4px;
+}
+
+.doviz-card__ad {
+  font-size: 13px;
+  color: var(--color-slate-500);
+}
+
+/* ---- Cevirici karti ---- */
+.converter-card {
+  max-width: 480px;
+}
+
+.converter-row {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 14px;
+}
+
+.converter-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-slate-100);
+}
+
+.converter-result__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-slate-500);
+}
+
+.converter-result__value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-navy-950);
+}
